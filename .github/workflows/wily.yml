@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build docker image
-      run: make docker-build
-    - name: Build wily
-      run: wily build mayan/
-    - name: Run wily
-      run: wily rank wily/
+    - name: Install wily
+      run: pip install wily
+    - name: Build wily for documents
+      run: wily build mayan/apps/documents/
+    - name: Run wily for document views
+      run: wily rank mayan/apps/documents/views
