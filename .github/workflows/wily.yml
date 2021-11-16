@@ -14,7 +14,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install wily
       run: pip install wily
-    - name: Build wily, index on mayan
-      run: wily build mayan/
+    - name: Make new branch for wily
+      run: git checkout -b branch_for_wily
+    - name: Build wily
+      run: wily build .
     - name: Run wily rank
       run: wily rank 
