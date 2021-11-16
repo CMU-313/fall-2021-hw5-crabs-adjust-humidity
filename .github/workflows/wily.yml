@@ -12,9 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: ls
+      run: ls
     - name: Install wily
       run: pip install wily
-    - name: Build wily for documents
-      run: wily build mayan/apps/documents/
-    - name: Run wily for document views
-      run: wily rank mayan/apps/documents/views
+    - name: Build wily mayan/
+      run: wily build 
+    - name: Run wily rank
+      run: wily rank 
