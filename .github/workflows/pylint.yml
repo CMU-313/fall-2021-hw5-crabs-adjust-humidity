@@ -16,4 +16,4 @@ jobs:
       run: |
         pip install pylint
     - name: Run all static checks on .py files in mayan/apps
-      run: mypy mayan/apps
+      run: pylint mayan/apps
