@@ -1,0 +1,21 @@
+name: mypy static check
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: install mypy and django-stubs
+      run: |
+        pip install django django-stubs mypy
+        pip install djangorestframework djangorestframework-stubs
+        python3 -m pip install types-python-dateutil types-bleach types-redis types-setuptools types-requests
+    - name: Run all static checks on .py files
+      run: mypy mayan/apps
