@@ -1,5 +1,6 @@
 stages:
   - stage_test
+  - stage_semantic_analysis
   - stage_build_python
   - stage_build_docker
   - stage_build_documentation
@@ -282,6 +283,14 @@ job_sqlite_upgrade_test:
     - mayan-edms.py initialsetup --settings=mayan.settings.testing.gitlab-ci
     - pip install dist/mayan_edms-*.whl
     - mayan-edms.py performupgrade --settings=mayan.settings.testing.gitlab-ci
+
+# Run mypy static analysis
+mypy:
+  stage: stage_semantic_analysis
+  script:
+  - pip install django django-stubs mypy
+  - pip install djangorestframework djangorestframework-stubs types-python-dateutil types-bleach types-redis types-setuptools types-requests
+  - python -m mypy mayan/apps
 
 # Run the test suit
 
